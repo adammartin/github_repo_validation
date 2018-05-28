@@ -10,6 +10,7 @@ class Config:
 CONFIG = Config()
 BASE_URL = CONFIG.SOURCE_ROOT_URL + '/orgs/hisc/repos?access_token=' + CONFIG.API_TOKEN
 REPO_URL = 'A_REPO_URL'
+REPO_README_URL = REPO_URL + '/readme?access_token=' + CONFIG.API_TOKEN
 NEXT = 'next_url'
 RESPONSE_LIST_1 = ['stuff']
 RESPONSE_LIST_2 = ['other_stuff']
@@ -30,7 +31,7 @@ def mock_response(*args, **kwargs):
 
 
 def mock_readme_response(*args, **kwargs):
-    if args[0] == REPO_URL+'/readme' and kwargs.get('headers'):
+    if args[0] == REPO_README_URL and kwargs.get('headers'):
         return Response(RESPONSE_JSON_1, NEXT)
     return Response(None, None)
 

@@ -10,7 +10,7 @@ def repository_list(config):
 
 
 def readme_md(url, config):
-    readme_url = url + '/readme'
+    readme_url = url + '/readme?access_token=' + config.API_TOKEN
     return json.loads(_get_response(readme_url, config).text)
 
 
