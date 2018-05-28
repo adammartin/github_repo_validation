@@ -24,9 +24,9 @@ EXPECTED_REPOS = [ EXPECTED_RECORD_1, EXPECTED_RECORD_2 ]
 
 
 def get_readme_md(*args, **kwargs):
-    if args[0] == RECORD_1_ROOT_URL + '/readme' and args[1] == CONFIG:
+    if args[0] == RECORD_1_ROOT_URL and args[1] == CONFIG:
         return RECORD_1_README
-    elif args[0] == RECORD_2_ROOT_URL + '/readme' and args[1] == CONFIG:
+    elif args[0] == RECORD_2_ROOT_URL and args[1] == CONFIG:
         return RECORD_2_README
     return None
 

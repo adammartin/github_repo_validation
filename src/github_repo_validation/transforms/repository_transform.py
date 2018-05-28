@@ -7,9 +7,5 @@ def transform_repos(repositories, config):
 
 def _transform_repo(repo, config):
     repository = {key: repo.get(key) for key in config.REPO_PROPERTIES}
-    repository['readme'] = repositories.readme_md(_readme_url(repo), config)
+    repository['readme'] = repositories.readme_md(repo.get('url'), config)
     return repository
-
-
-def _readme_url(repo):
-    return repo.get('url') + '/readme'
