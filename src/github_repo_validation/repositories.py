@@ -10,9 +10,8 @@ def repository_list(config):
 
 
 def readme_md(url, config):
-    print(url)
-    print(config)
-    return None
+    readme_url = url + '/readme'
+    return json.loads(_get_response(readme_url, config).text)
 
 
 def _get_all_paged(url, config):

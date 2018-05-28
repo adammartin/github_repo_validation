@@ -1,4 +1,4 @@
-from github_repo_validation.repositories import repository_list
+from github_repo_validation.repositories import repository_list, readme_md
 from unittest import mock
 import requests, json
 
@@ -9,6 +9,7 @@ class Config:
 
 CONFIG = Config()
 BASE_URL = CONFIG.SOURCE_ROOT_URL + '/orgs/hisc/repos?access_token=' + CONFIG.API_TOKEN
+REPO_URL = 'A_REPO_URL'
 NEXT = 'next_url'
 RESPONSE_LIST_1 = ['stuff']
 RESPONSE_LIST_2 = ['other_stuff']
@@ -27,12 +28,23 @@ def mock_response(*args, **kwargs):
         return Response(RESPONSE_JSON_2, None)
     return Response(None, None)
 
+
+def mock_readme_response(*args, **kwargs):
+    if args[0] == REPO_URL+'/readme' and kwargs.get('headers'):
+        return Response(RESPONSE_JSON_1, NEXT)
+    return Response(None, None)
+
+
 @mock.patch('requests.get', return_value = Response(RESPONSE_JSON_1, None))
 def test_repository_list_will_retrieve_repositories(requests_mock):
-    expected_url = CONFIG.SOURCE_ROOT_URL + '/orgs/hisc/repos?access_token=' + CONFIG.API_TOKEN
     assert repository_list(CONFIG) == RESPONSE_LIST_1
+
 
 @mock.patch('requests.get', side_effect = mock_response)
 def test_repository_list_will_retrieve_paged_repositories(requests_mock):
-    expected_url = CONFIG.SOURCE_ROOT_URL + '/orgs/hisc/repos?access_token=' + CONFIG.API_TOKEN
     assert repository_list(CONFIG) == RESPONSE_LIST_1 + RESPONSE_LIST_2
+
+
+@mock.patch('requests.get', side_effect = mock_readme_response)
+def test_readme_md_request_will_retrieve_readme(mock_readme_md):
+    assert readme_md(REPO_URL, CONFIG) == RESPONSE_LIST_1
