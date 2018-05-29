@@ -2,7 +2,7 @@ from github_repo_validation.filters import rules_factory
 from unittest import mock
 
 
-EXPECTED_RULES = [rules_factory.readme_rule, rules_factory.topics_rule]
+EXPECTED_RULES = [rules_factory.readme_rule, rules_factory.topics_rule, rules_factory.name_rule]
 
 
 def test_will_return_list_of_rules():
@@ -10,6 +10,7 @@ def test_will_return_list_of_rules():
 
 
 WEIGHT = 'compliance_weight'
+VALID_NAME = 'name_compliance'
 MIN_DESIRED_SIZE = 1500 # This is arbitrary
 GOOD_README = { 'size': MIN_DESIRED_SIZE }
 OK_README = { 'size': 800 }
@@ -21,12 +22,15 @@ REALLY_GOOD_TOPICS = [ 'one', 'two', 'three', 'four' ]
 GOOD_TOPICS = [ 'one', 'two' ]
 OK_TOPICS = [ 'one' ]
 BAD_TOPICS = []
+SNAKE_NAME = 'good_name'
+CAMEL_NAME = 'BadName'
+MIXED_NAME = 'MC.hammer_time'
 
 
 ########## README TEST ##########
 
-def sample_repo(readme=GOOD_README, topics=GOOD_TOPICS):
-    return { 'readme': readme, 'topics': topics }
+def sample_repo(readme=GOOD_README, topics=GOOD_TOPICS, name='SNAKE_NAME'):
+    return { 'readme': readme, 'topics': topics, 'full_name': 'HISC/'+name }
 
 
 def test_will_weight_a_good_readme_at_1():
@@ -107,3 +111,19 @@ def test_will_account_forexisting_weight_with_topics():
     repo[WEIGHT] = 0.5
     expected_weight = repo[WEIGHT] * len(OK_TOPICS)/MINIMUM_TOPICS
     assert rules_factory.topics_rule(repo)[WEIGHT] == expected_weight
+
+
+########## REPOSITORY NAME TEST ##########
+def test_will_pass_snake_case_name():
+    repo = sample_repo(name=SNAKE_NAME)
+    assert rules_factory.name_rule(repo)[VALID_NAME] == True
+
+
+def test_will_fail_camel_case_name():
+    repo = sample_repo(name=CAMEL_NAME)
+    assert rules_factory.name_rule(repo)[VALID_NAME] == False
+
+
+def test_will_fail_mixed_case_name():
+    repo = sample_repo(name=MIXED_NAME)
+    assert rules_factory.name_rule(repo)[VALID_NAME] == False

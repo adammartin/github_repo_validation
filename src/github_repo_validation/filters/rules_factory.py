@@ -1,8 +1,11 @@
+import string_utils
+
+
 _WEIGHT = 'compliance_weight'
 
 
 def rules():
-    return [readme_rule, topics_rule]
+    return [readme_rule, topics_rule, name_rule]
 
 
 def readme_rule(repo):
@@ -17,6 +20,12 @@ def topics_rule(repo):
     topics = repo.get('topics', [])
     weight = _topic_weight(len(topics))
     repo[_WEIGHT] = _new_repo_weight(repo, weight)
+    return repo
+
+
+def name_rule(repo):
+    name = repo['full_name'].replace('HISC/', '')
+    repo['name_compliance'] = string_utils.is_snake_case(name)
     return repo
 
 
