@@ -2,7 +2,7 @@ from github_repo_validation.filters import rules_factory
 from unittest import mock
 
 
-EXPECTED_RULES = [ rules_factory.readme_rule ]
+EXPECTED_RULES = [rules_factory.readme_rule, rules_factory.topics_rule]
 
 
 def test_will_return_list_of_rules():

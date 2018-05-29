@@ -2,7 +2,7 @@ _WEIGHT = 'compliance_weight'
 
 
 def rules():
-    return [readme_rule]
+    return [readme_rule, topics_rule]
 
 
 def readme_rule(repo):
