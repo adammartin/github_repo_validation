@@ -1,8 +1,8 @@
 from github_repo_validation import repositories
 
 
-def transform_repos(repositories, config):
-    return [_transform_repo(repo, config) for repo in repositories]
+def transform_repos(repos, config):
+    return [_transform_repo(repo, config) for repo in repos]
 
 
 def _transform_repo(repo, config):
