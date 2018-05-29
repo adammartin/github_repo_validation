@@ -40,7 +40,7 @@ def test_will_weight_an_ok_readme_as_percantage_of_1500_bytes():
     assert rules_factory.readme_rule(repo)[WEIGHT] == expected_weight
 
 
-def test_will_account_for_existing_weight():
+def test_will_account_for_existing_weight_with_readme():
     repo = sample_repo(readme=OK_README)
     repo[WEIGHT] = 0.5
     expected_weight = repo[WEIGHT] * OK_README['size']/MIN_DESIRED_SIZE
@@ -101,4 +101,9 @@ def test_will_weight_repo_missing_topics_as_0():
     repo = {}
     assert rules_factory.topics_rule(repo)[WEIGHT] == 0
 
-# TODO: Deal with existing weight!
+
+def test_will_account_forexisting_weight_with_topics():
+    repo = sample_repo(topics=OK_TOPICS)
+    repo[WEIGHT] = 0.5
+    expected_weight = repo[WEIGHT] * len(OK_TOPICS)/MINIMUM_TOPICS
+    assert rules_factory.topics_rule(repo)[WEIGHT] == expected_weight
