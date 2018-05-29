@@ -1,17 +1,16 @@
+import csv
 import json
 import click
 import config
-import csv
 from validation_checks import repositories_in_violation
 
 
 @click.command()
 @click.option('--print_format', type=click.Choice(['jsonl', 'csv']))
 def repo_consistency_report(print_format='jsonl'):
-    if print_format=='jsonl':
+    if print_format == 'jsonl':
         _print_jsonl()
     _print_csv()
-
 
 
 def _print_jsonl():
