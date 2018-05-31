@@ -1,7 +1,7 @@
 from github_repo_validation.filters import rules_factory
 
 
-# pylint: disable=too-few-public-methods, unused-variable
+# pylint: disable=too-few-public-methods
 class FilterRules:
     def __init__(self):
         self.rules = rules_factory.rules()

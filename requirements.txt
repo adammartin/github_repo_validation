@@ -6,7 +6,7 @@ bandit==1.4.0
 flake8==3.0.4
 pep8-naming==0.4.1
 pycodestyle==2.0.0
-pylint==1.7.2
+pylint==1.9.1
 
 # testing
 coverage==4.0.1
