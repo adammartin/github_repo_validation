@@ -26,6 +26,19 @@ If your version is below this, install a newer version of Bash, e.g.,
 brew install bash
 ```
 
+Python version 3.6 or greater is required with pip installed.
+
+To install dependencies using pip execute the following command in development environment:
+
+```sh
+pip install -r requirements.txt
+```
+
+To install dependencies using pip in the production environment use the following command:
+
+```sh
+pip install -r requirements.prod.txt
+```
 
 #### Environment Variables
 
