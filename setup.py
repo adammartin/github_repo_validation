@@ -20,7 +20,7 @@ setup(
     package_dir={'': 'src'},
     entry_points='''
             [console_scripts]
-            github_repo_validation=github_repo_validation.repo_consistency_report:repo_consistency_report
+            github_repo_validation=github_repo_validation.cli:repo_consistency_report
     ''',
 
     install_requires=[
