@@ -2,9 +2,9 @@ import csv
 import json
 
 
-def format_output(repositories, file_format, file_name):
-    with open(_full_file_name(file_name, file_format), 'w') as output:
-        if file_format == 'csv':
+def format_output(repositories, print_format, file_name):
+    with open(_full_file_name(file_name, print_format), 'w') as output:
+        if print_format == 'csv':
             _write_csv(output, repositories)
         _write_jsonl(output, repositories)
 
@@ -21,5 +21,5 @@ def _write_jsonl(output, repositories):
         output.writelines(json.dumps(entry)+'\n')
 
 
-def _full_file_name(file_name, file_format):
-    return file_name + '.' + file_format
+def _full_file_name(file_name, print_format):
+    return file_name + '.' + print_format
