@@ -21,6 +21,12 @@ def test_will_print_to_csv_file(my_open):
 
 
 @mock.patch("builtins.open", new_callable=mock.mock_open)
+def test_will_not_print_jsonl_to_csv_file(my_open):
+    format_output(REPOS, CSV, FILE_NAME)
+    my_open().writelines.assert_not_called()
+
+
+@mock.patch("builtins.open", new_callable=mock.mock_open)
 def test_will_will_write_csv_headers(my_open):
     format_output(REPOS, CSV, FILE_NAME)
     output = my_open()
