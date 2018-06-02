@@ -18,7 +18,7 @@ def transform_mock(*args, **kwargs):
 
 
 def filter_mock(*args, **kwargs):
-    if args[0] == TRANSFORM_REPOS:
+    if args[0] == TRANSFORM_REPOS and args[1] == CONFIG:
         return BAD_REPOS
     return None
 
