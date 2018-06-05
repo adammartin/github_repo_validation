@@ -17,7 +17,7 @@ FILE_NAME = 'derp'
 def test_will_print_to_csv_file(my_open):
     format_output(REPOS, CSV, FILE_NAME)
     FULL_FILE_NAME = FILE_NAME + '.' + CSV
-    my_open.assert_called_once_with(FULL_FILE_NAME, 'w')
+    my_open.assert_called_once_with(FULL_FILE_NAME, 'a')
 
 
 @mock.patch("builtins.open", new_callable=mock.mock_open)
@@ -48,7 +48,7 @@ def test_will_will_write_csv_content(my_open):
 def test_will_print_to_jsonl_file(my_open):
     format_output(REPOS, JSONL, FILE_NAME)
     FULL_FILE_NAME = FILE_NAME + '.' + JSONL
-    my_open.assert_called_once_with(FULL_FILE_NAME, 'w')
+    my_open.assert_called_once_with(FULL_FILE_NAME, 'a')
 
 
 @mock.patch("builtins.open", new_callable=mock.mock_open)

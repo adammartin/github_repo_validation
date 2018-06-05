@@ -3,7 +3,7 @@ import json
 
 
 def format_output(repositories, print_format, file_name):
-    with open(_full_file_name(file_name, print_format), 'w') as output:
+    with open(_full_file_name(file_name, print_format), 'a') as output:
         if print_format == 'csv':
             _write_csv(output, repositories)
         elif print_format == 'jsonl':
