@@ -40,6 +40,11 @@ To install dependencies using pip in the production environment use the followin
 pip install -r requirements.prod.txt
 ```
 
+```sh
+pip install -e .
+
+```
+
 #### Environment Variables
 
 Before running any tasks, be sure to source the build environment variables file:
