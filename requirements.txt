@@ -13,3 +13,4 @@ coverage==4.0.1
 pytest==3.2.2
 pytest-cov==2.5.1
 httpretty==0.9.4
+freezegun==0.3.10
