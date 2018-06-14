@@ -11,5 +11,7 @@ ORGANIZATIONS = ['digital-solutions',
                  'it-services',
                  'it-support',
                  'it',
-                 'finance']
+                 'finance',
+                 'pitcrew',
+                 'vincent']
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
