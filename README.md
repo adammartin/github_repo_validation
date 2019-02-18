@@ -17,19 +17,14 @@ API_TOKEN = [INSERT_GITHUB_API_TOKEN_HERE]
 SOURCE_ROOT_URL = 'https://api.github.com'
 SOURCE_HEADER = {'Accept': 'application/vnd.github.mercy-preview+json'}
 REPO_PROPERTIES = ['full_name', 'topics', 'url']
-ORGANIZATIONS = ['digital-solutions',
-                 'immersion-active',
-                 'marketing',
-                 'hisc',
-                 'it-services',
-                 'it-support',
+ORGANIZATIONS = ['marketing',
                  'it',
                  'finance']
 ```
 
 ### Repository Meta Data
 
-* Department/Organization: HIDS
+* Department/Organization: TBD
 * Project: N/A
 
 ## Development
